@@ -51,6 +51,7 @@ public class LoginActivity extends AppCompatActivity {
 
                     if (Ayuda.getFullResponse(con).contains("CadenaMisteriosaDeConfirmacion")) {
                         Intent menu = new Intent(LoginActivity.this, MenuPrincipal.class);
+                        menu.putExtra("lcveusr",usu);
                         startActivity(menu);
                     } else {
                         Toast.makeText(loginButton.getContext(), "Usuario o Contraseña incorrectos", Toast.LENGTH_SHORT).show();
