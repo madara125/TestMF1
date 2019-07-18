@@ -11,6 +11,29 @@ import static androidx.core.content.ContextCompat.startActivity;
 
 public class Ayuda {
 
+    /*clase que inicio como un servicio de ayuda, y se convertira en una clase contenedora de metodos chidos :v*/
+    /*contiene la¿os metodos de conexion con el sistema de margen, ya sea desarrollo o produccion*/
+
+    public static String getParamsGraficaComisionesMes(int mes, String usu){
+        try {
+            URL url = new URL("http://grudis-desarrollo.ddns.net:8997/cgi-bin/cgiip.exe/WService=TDMNV/FTS/WsReporComisTotAnd.html");
+            HttpURLConnection con = (HttpURLConnection) url.openConnection();
+            Map<String, String> parameters = new HashMap<>();
+            parameters.put("lcveusr", usu);
+            parameters.put("mesIni", String.valueOf(mes));
+            con.setRequestMethod("GET");
+            con.setDoOutput(true);
+            DataOutputStream out = new DataOutputStream(con.getOutputStream());
+            out.writeBytes(Ayuda.getParamsString(parameters));
+            out.flush();
+            out.close();
+            return Ayuda.getFullResponse(con);
+        } catch (Exception e){
+            System.out.println(e.toString());
+        }
+        return "";
+    }
+
     public static String getParamsString(Map<String, String> params)
             throws UnsupportedEncodingException{
         StringBuilder result = new StringBuilder();
