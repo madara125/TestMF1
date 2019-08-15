@@ -25,4 +25,4 @@ public class MyValueFormatter implements IValueFormatter, IAxisValueFormatter {
     public String getFormattedValue(float value, AxisBase axis) {
         return " $" + mFormat.format(value);
     }
-}
+ private void hola(){}}
